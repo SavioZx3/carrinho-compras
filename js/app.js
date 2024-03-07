@@ -1,4 +1,6 @@
 let produtosNoCarrinho = [];
+let carrinho = document.getElementById("lista-produtos");
+let mostraTotal = document.getElementById("valor-total");
 
 function adicionar() {
       //recuperar valores nome do produto, quantidade e valor
@@ -14,16 +16,23 @@ function adicionar() {
     produtosNoCarrinho.push(subTotal);
       
       //adicionando no carrinho
-    let carrinho = document.getElementById("lista-produtos");
     carrinho.innerHTML =  carrinho.innerHTML + ` <section class="carrinho__produtos__produto">
     <span class="texto-azul">${quantidade}x</span> ${nomeProduto} <span class="texto-azul">R$${subTotal}</span>
-  </section>`
+  </section>`;
       
       //adicionando o total
      let total = somaCarrinho();
-     let mostraTotal = document.getElementById("valor-total");
-     mostraTotal.innerHTML = `R$${total}</span>`
+     mostraTotal.innerHTML = `R$${total}</span>`;
 }
+
+function limpar(){
+  carrinho.innerHTML = ` <section class="carrinho__produtos__produto">
+  <span class="texto-azul"></span><span class="texto-azul"></span>
+</section>`;
+  mostraTotal.innerHTML = `</span>`;
+  produtosNoCarrinho = [];
+}
+
 
 function somaCarrinho() {
   let soma = 0;
@@ -32,3 +41,4 @@ function somaCarrinho() {
   }
   return soma;
 }
+
